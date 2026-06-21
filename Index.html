@@ -215,3 +215,99 @@ When would you be free?
 </p><input type="date" id="date"><br><button class="yes" onclick="saveDate()">
 Continue ❤️
 </button></div></div>
+<!-- PAGE 3 -->
+<div class="screen" id="page3">
+  <div class="card">
+    <h2>What would you like to eat? 🍽️</h2>
+
+    <div class="food-grid">
+      <button class="food" onclick="selectFood('Pizza 🍕')">Pizza 🍕</button>
+      <button class="food" onclick="selectFood('Burger 🍔')">Burger 🍔</button>
+      <button class="food" onclick="selectFood('Momos 🥟')">Momos 🥟</button>
+      <button class="food" onclick="selectFood('Pasta 🍝')">Pasta 🍝</button>
+      <button class="food" onclick="selectFood('Biryani 🍗')">Biryani 🍗</button>
+      <button class="food" onclick="selectFood('Coffee ☕')">Coffee ☕</button>
+    </div>
+
+    <br>
+    <button class="yes" onclick="nextPage(4)">Continue ❤️</button>
+  </div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="screen" id="page4">
+  <div class="card">
+    <h2>One Last Thing 💌</h2>
+
+    <p>
+      Thank you for reaching this far ❤️
+      <br><br>
+      I would genuinely love to spend some time with you and get to know you better.
+    </p>
+
+    <button class="yes" onclick="showResult()">
+      Reveal Surprise 🎁
+    </button>
+  </div>
+</div><!-- PAGE 5 -->
+<div class="screen" id="page5">
+  <div class="card">
+    <h1>❤️ Date Request Sent ❤️</h1>
+
+    <p id="resultText"></p>
+
+    <a href="https://instagram.com/_allabout.arup_" target="_blank">
+      <button class="yes">
+        Message on Instagram 📸
+      </button>
+    </a>
+  </div>
+</div>
+
+<script>
+let selectedFood = "";
+
+function nextPage(page){
+  document.querySelectorAll(".screen").forEach(screen=>{
+    screen.classList.remove("active");
+  });
+
+  document.getElementById("page"+page).classList.add("active");
+}
+
+function selectFood(food){
+  selectedFood = food;
+
+  document.querySelectorAll(".food").forEach(btn=>{
+    btn.style.background = "white";
+  });
+
+  event.target.style.background = "#ffd6e7";
+}
+
+function showResult(){
+  const date = document.getElementById("date").value;
+
+  document.getElementById("resultText").innerHTML =
+    "Selected Date: <b>" + date + "</b><br><br>" +
+    "Favorite Food: <b>" + selectedFood + "</b><br><br>" +
+    "Now send me a message on Instagram ❤️";
+
+  nextPage(5);
+}
+
+document.getElementById("noBtn").addEventListener("mouseover",()=>{
+  const btn = document.getElementById("noBtn");
+
+  btn.style.position="absolute";
+  btn.style.left=Math.random()*80+"%";
+  btn.style.top=Math.random()*80+"%";
+});
+
+window.onload=()=>{
+  document.getElementById("page1").classList.add("active");
+};
+</script>
+
+</body>
+</html>
